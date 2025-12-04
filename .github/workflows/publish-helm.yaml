@@ -41,6 +41,10 @@ jobs:
       - name: Determine tag
         id: tag
         run: |
+          # Convert repository owner to lowercase to handle uppercase characters
+          REPOSITORY=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "REGISTRY=ghcr.io/${REPOSITORY}" >> $GITHUB_ENV
+
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             TAG=${GITHUB_REF#refs/tags/}
           else
@@ -51,15 +55,14 @@ jobs:
       - name: Log in to Container Registry
         if: github.event_name != 'pull_request'
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ${{ env.REGISTRY }} --username ${{ github.actor }} --password-stdin
+          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
       
       - name: Build Helm chart
         if: github.event_name == 'pull_request'
         run: |
-          make helm-build TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/mellanox
+          make helm-build TAG=${{ steps.tag.outputs.tag }} REGISTRY=${{ env.REGISTRY }}
       
       - name: Build and publish Helm chart
         if: github.event_name != 'pull_request'
         run: |
-          make helm-publish TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/mellanox
-
+          make helm-publish TAG=${{ steps.tag.outputs.tag }} REGISTRY=${{ env.REGISTRY }}
