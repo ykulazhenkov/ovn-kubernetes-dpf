@@ -262,6 +262,8 @@ spec:
           value: "dpu-host"
         - name: OVNKUBE_NODE_MGMT_PORT_NETDEV
           value: {{ default "" .Values.nodeWithDPUManifests.nodeMgmtPortNetdev | quote }}
+        - name: OVNKUBE_NODE_MGMT_PORT_DP_RESOURCE_NAME
+          value: {{ default "" .Values.nodeWithDPUManifests.nodeMgmtPortDPResourceName | quote }}
         - name: OVN_HOST_NETWORK_NAMESPACE
           valueFrom:
             configMapKeyRef:
