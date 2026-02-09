@@ -20,6 +20,7 @@ nodeWithDPUManifests:
     tag: ${TAG}
     pullPolicy: IfNotPresent
   nodeMgmtPortNetdev: ""
+  nodeMgmtPortDpResourceName: ""
   dpuServiceAccountName: ovn-dpu
   dpuServiceAccountNamespace: ovn-kubernetes
   cniBinDir: "/opt/cni/bin"
