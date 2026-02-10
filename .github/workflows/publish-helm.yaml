@@ -56,10 +56,10 @@ jobs:
       - name: Build Helm chart
         if: github.event_name == 'pull_request'
         run: |
-          make helm-build TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/mellanox
+          make helm-build TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/ykulazhenkov
       
       - name: Build and publish Helm chart
         if: github.event_name != 'pull_request'
         run: |
-          make helm-publish TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/mellanox
+          make helm-publish TAG=${{ steps.tag.outputs.tag }} REGISTRY=ghcr.io/ykulazhenkov
 
