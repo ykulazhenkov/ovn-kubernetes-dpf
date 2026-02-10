@@ -13,9 +13,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_UBUNTU: ghcr.io/mellanox/ovn-kubernetes-dpf
-  IMAGE_NAME_FEDORA: ghcr.io/mellanox/ovn-kubernetes-dpf-fedora
-  IMAGE_NAME_DPF_UTILS: ghcr.io/mellanox/ovn-kubernetes-dpf-utils
+  IMAGE_NAME_UBUNTU: ghcr.io/ykulazhenkov/ovn-kubernetes-dpf
+  IMAGE_NAME_FEDORA: ghcr.io/ykulazhenkov/ovn-kubernetes-dpf-fedora
+  IMAGE_NAME_DPF_UTILS: ghcr.io/ykulazhenkov/ovn-kubernetes-dpf-utils
 
 jobs:
   build-ubuntu:
